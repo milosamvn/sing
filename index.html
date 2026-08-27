@@ -59,7 +59,7 @@
   </article></main>
   <footer><strong>Lưu ý:</strong> Lịch tại Singapore không sử dụng taxi hoặc Grab. Mandai không có ga MRT ngay tại điểm đến nên ngày 3 cần nối chuyến bằng xe buýt công cộng hoặc Mandai Khatib Shuttle. Giờ mở cửa, suất diễn và thời gian di chuyển có thể thay đổi; nên kiểm tra lại gần ngày đi.</footer>
   <nav class="toolbar" aria-label="Công cụ"><button onclick="window.print()">In / Lưu PDF</button><span class="legend"><b>Gạch chân đỏ</b> = cần mua hoặc đặt vé · Xanh lá = ăn trưa · Tím = ăn tối · Đỏ = chuyến bay/ngày nặng</span></nav>
-  <div class="version">Version 260827.13.27.10</div>
+  <div class="version">Version 260827.14.17.05</div>
   <script>
     function updateEvent(day,row,time,content,type){
       const event=document.querySelector(`.day:nth-of-type(${day}) .event[data-row="${row}"]`);
@@ -98,6 +98,20 @@
     updateEvent(5,4,'09:30','Arab Street • Kampong Glam (~30\')');
     updateEvent(5,5,'10:00','Sultan Mosque (~30\') • Haji Lane • cà phê hoặc chụp ảnh (~1h30\')');
     updateEvent(5,8,'13:10','Little India • nhà Tan Teng Niah • xem bên ngoài Sri Veeramakaliamman Temple; đền đóng giữa trưa (~1h20\')');
+    updateEvent(4,12,'17:00','<strong style="color:#dc2626">OCBC SKYWAY ĐÓNG BẢO TRÌ 02/09</strong> • dành thêm thời gian tại Supertree Grove hoặc nghỉ (~30\')','rest');
+    updateEvent(2,6,'','<span class="schedule-note">Lưu ý 03/09: WaterWorld, TRANSFORMERS The Ride và Pantages Theater đóng tạm thời.</span>','activity');
+    {
+      const main=document.querySelector('main');
+      const days=[...main.querySelectorAll('.day')];
+      const oldDay2=days[1],oldDay3=days[2],oldDay4=days[3];
+      main.insertBefore(oldDay4,oldDay2);
+      oldDay4.querySelector('header div').textContent='NGÀY 2 • T4 • 02/09';
+      oldDay2.querySelector('header div').textContent='NGÀY 3 • T5 • 03/09';
+      oldDay3.querySelector('header div').textContent='NGÀY 4 • T6 • 04/09';
+      oldDay4.style.setProperty('--day','#D97706');
+      oldDay2.style.setProperty('--day','#DC2626');
+      oldDay3.style.setProperty('--day','#059669');
+    }
     document.querySelector('.day:last-of-type .event[data-row="5"] div').innerHTML='<span class="check-in">CHECK IN</span> / Gửi hành lý / làm thủ tục sớm nếu quầy đã mở (~45\')';
     function alignRows(){
       const rows=[...document.querySelectorAll('.event[data-row]')];
