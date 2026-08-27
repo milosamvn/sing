@@ -60,9 +60,9 @@
   </article></main>
   <footer><strong>Lưu ý:</strong> Lịch tại Singapore không sử dụng taxi hoặc Grab. Mandai không có ga MRT ngay tại điểm đến nên ngày 3 cần nối chuyến bằng xe buýt công cộng hoặc Mandai Khatib Shuttle. Giờ mở cửa, suất diễn và thời gian di chuyển có thể thay đổi; nên kiểm tra lại gần ngày đi.</footer>
   <nav class="toolbar" aria-label="Công cụ"><button onclick="window.print()">In / Lưu PDF</button><span class="legend"><b>Gạch chân đỏ</b> = cần mua hoặc đặt vé · Xanh lá = ăn trưa · Tím = ăn tối · Đỏ = chuyến bay/ngày nặng</span></nav>
-  <div class="version">Version 260827.17.21.52</div>
+  <div class="version">Version 260827.17.29.05</div>
   <section class="audit-wrap" aria-label="Báo cáo kiểm tra lịch trình">
-    <button class="audit-toggle" id="auditToggle" type="button" aria-expanded="false" aria-controls="auditReport">Hiện báo cáo kiểm tra thời gian</button>
+    <button class="audit-toggle" id="auditToggle" type="button" aria-expanded="false" aria-controls="auditReport">Hiện chi tiết</button>
     <article class="audit-report" id="auditReport" hidden>
       <h2>Kiểm tra giờ hoạt động, thời gian di chuyển và tính hợp lý</h2>
       <p>Mình đã đối chiếu toàn bộ lịch mới từ 1–6/9/2026. Kết luận: lịch nhìn chung chạy được, không có xung đột nghiêm trọng, nhưng có 4 điểm cần lưu ý—đặc biệt là OCBC Skyway đóng cửa ngày 2/9 và thời gian đến Museum of Ice Cream hơi sát.</p>
@@ -181,7 +181,7 @@
       const willOpen=report.hidden;
       report.hidden=!willOpen;
       this.setAttribute('aria-expanded',String(willOpen));
-      this.textContent=willOpen?'Ẩn báo cáo kiểm tra thời gian':'Hiện báo cáo kiểm tra thời gian';
+      this.textContent=willOpen?'Ẩn chi tiết':'Hiện chi tiết';
     });
   </script>
 </body>
