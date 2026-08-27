@@ -23,7 +23,7 @@
     .check-in{color:#dc2626;font-weight:800}
     .schedule-note{color:#ea580c;font-weight:800}
     .version{text-align:center;padding:8px 12px 14px;color:#64748b;font-size:11px;font-variant-numeric:tabular-nums}
-    .audit-wrap{max-width:1100px;margin:0 auto 28px;padding:0 12px}.audit-toggle{display:block;margin:0 auto;border:0;border-radius:999px;background:#0f766e;color:#fff;padding:10px 18px;font:inherit;font-size:13px;font-weight:800;cursor:pointer}.audit-toggle:hover{background:#115e59}.audit-toggle[aria-expanded="true"]{background:#475569}.audit-report{margin-top:12px;padding:18px;background:#fff;border:1px solid #cbd5e1;border-radius:14px;box-shadow:0 3px 14px #0f172a10;color:#334155;font-size:13px;line-height:1.55}.audit-report[hidden]{display:none}.audit-report h2{margin:0 0 12px;color:#0f172a;font-size:20px}.audit-report h3{margin:20px 0 8px;color:#0f766e;font-size:16px}.audit-report h4{margin:14px 0 6px;color:#334155;font-size:14px}.audit-report p{margin:7px 0}.audit-report ul,.audit-report ol{list-style:revert;margin:7px 0;padding-left:22px}.audit-report li{margin:5px 0}.audit-table-wrap{overflow-x:auto}.audit-report table{width:100%;border-collapse:collapse;min-width:720px}.audit-report th,.audit-report td{border:1px solid #dbe2ea;padding:8px;text-align:left;vertical-align:top}.audit-report th{background:#f1f5f9;color:#0f172a}.audit-report a{color:#0369a1}.audit-summary{margin-top:16px!important;padding:12px;background:#ecfdf5;border-left:4px solid #10b981;border-radius:7px;color:#065f46;font-weight:700}
+    .audit-wrap{max-width:1100px;margin:0 auto 28px;padding:0 12px}.audit-toggle{display:block;margin:0 auto;border:0;border-radius:999px;background:#0f766e;color:#fff;padding:10px 18px;font:inherit;font-size:13px;font-weight:800;cursor:pointer}.audit-toggle:hover{background:#115e59}.audit-toggle[aria-expanded="true"]{background:#475569}.audit-report{margin-top:12px;padding:18px;background:#fff;border:1px solid #cbd5e1;border-radius:14px;box-shadow:0 3px 14px #0f172a10;color:#334155;font-size:13px;line-height:1.55}.audit-report[hidden]{display:none}.audit-report h2{margin:0 0 12px;color:#0f172a;font-size:20px}.audit-report h3{margin:20px 0 8px;color:#0f766e;font-size:16px}.audit-report h4{margin:14px 0 6px;color:#334155;font-size:14px}.audit-report p{margin:7px 0}.audit-report ul,.audit-report ol{list-style:revert;margin:7px 0;padding-left:22px}.audit-report li{margin:5px 0}.audit-table-wrap{overflow-x:auto}.audit-report table{width:100%;border-collapse:collapse;min-width:720px}.audit-report th,.audit-report td{border:1px solid #dbe2ea;padding:8px;text-align:left;vertical-align:top}.audit-report th{background:#f1f5f9;color:#0f172a}.audit-report a{color:#0369a1}.booking-note{margin:14px 0;padding:12px 14px;background:#fff7ed;border:1px solid #fdba74;border-radius:10px}.booking-note h4{margin:0 0 8px;color:#c2410c}.booking-note strong{color:#9a3412}.audit-summary{margin-top:16px!important;padding:12px;background:#ecfdf5;border-left:4px solid #10b981;border-radius:7px;color:#065f46;font-weight:700}
     footer{max-width:1100px;margin:0 auto 22px;padding:14px 18px;color:#475569;font-size:12px;line-height:1.55;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px}
     .empty{background:#f8fafc}
     @media (min-width:901px) and (max-width:1500px){.top{padding-top:15px;padding-bottom:15px}.day{border-radius:10px}.day>header{padding:9px 5px}.day>header div{font-size:clamp(11px,1vw,14px)}.day>header small{font-size:clamp(8px,.72vw,10px)}.event{grid-template-columns:clamp(38px,3.7vw,52px) minmax(0,1fr)}time{padding:7px 3px;font-size:clamp(9px,.85vw,12px)}.event div{padding:7px 5px;font-size:clamp(9px,.82vw,12px);line-height:1.3}.toolbar{padding:9px 12px}.legend{font-size:11px}footer{margin-left:10px;margin-right:10px}}
@@ -60,13 +60,13 @@
   </article></main>
   <footer><strong>Lưu ý:</strong> Lịch tại Singapore không sử dụng taxi hoặc Grab. Mandai không có ga MRT ngay tại điểm đến nên ngày 3 cần nối chuyến bằng xe buýt công cộng hoặc Mandai Khatib Shuttle. Giờ mở cửa, suất diễn và thời gian di chuyển có thể thay đổi; nên kiểm tra lại gần ngày đi.</footer>
   <nav class="toolbar" aria-label="Công cụ"><button onclick="window.print()">In / Lưu PDF</button><span class="legend"><b>Gạch chân đỏ</b> = cần mua hoặc đặt vé · Xanh lá = ăn trưa · Tím = ăn tối · Đỏ = chuyến bay/ngày nặng</span></nav>
-  <div class="version">Version 260827.17.29.05</div>
+  <div class="version">Version 260827.17.32.38</div>
   <section class="audit-wrap" aria-label="Báo cáo kiểm tra lịch trình">
     <button class="audit-toggle" id="auditToggle" type="button" aria-expanded="false" aria-controls="auditReport">Hiện chi tiết</button>
     <article class="audit-report" id="auditReport" hidden>
       <h2>Kiểm tra giờ hoạt động, thời gian di chuyển và tính hợp lý</h2>
       <p>Mình đã đối chiếu toàn bộ lịch mới từ 1–6/9/2026. Kết luận: lịch nhìn chung chạy được, không có xung đột nghiêm trọng, nhưng có 4 điểm cần lưu ý—đặc biệt là OCBC Skyway đóng cửa ngày 2/9 và thời gian đến Museum of Ice Cream hơi sát.</p>
-      <h3>1. Kiểm tra giờ hoạt động</h3>
+      <h3>1. Kiểm tra giờ hoạt động và yêu cầu vé/đặt trước</h3>
       <div class="audit-table-wrap"><table>
         <thead><tr><th>Ngày</th><th>Điểm đến</th><th>Giờ hoạt động/giờ diễn</th><th>Lịch hiện tại</th><th>Đánh giá</th></tr></thead>
         <tbody>
@@ -92,6 +92,18 @@
           <tr><td>6</td><td>Changi Airport</td><td>24 giờ</td><td>Buổi sáng</td><td>✅</td></tr>
         </tbody>
       </table></div>
+      <aside class="booking-note">
+        <h4>🎟️ Vé, khung giờ và xác nhận cần chuẩn bị</h4>
+        <ul>
+          <li><strong>Phải mua vé/chọn ngày trước:</strong> Universal Studios Singapore, Wings of Time, Singapore Zoo, Night Safari, Cloud Forest + Jurassic World, Flower Dome và Museum of Ice Cream.</li>
+          <li><strong>Phải xác nhận đúng khung giờ:</strong> Museum of Ice Cream lúc 10:00; Wings of Time suất 19:40; vé vào Night Safari khoảng 19:15. Kiểm tra ngày và giờ trên từng vé trước chuyến đi.</li>
+          <li><strong>Phải đặt chỗ riêng:</strong> Creatures of the Night tại Night Safari không tự động kèm chỗ ngồi; đặt suất 20:30 trên hệ thống Mandai khi lượt đặt mở, thường từ 2 giờ trước giờ diễn.</li>
+          <li><strong>Nên đặt trước:</strong> JUMBO Seafood Riverside Point lúc 18:00 ngày 5 để tránh hết bàn.</li>
+          <li><strong>Cần xác nhận gần ngày đi:</strong> giờ đóng cửa USS ngày 03/09, các trò tạm đóng, tình trạng thời tiết của các điểm ngoài trời và giờ mở quầy Vietnam Airlines ngày về.</li>
+          <li><strong>Không cần mua vé:</strong> HSBC Rain Vortex, Spectra, Garden Rhapsody, Merlion Park, Supertree Grove, Kampong Glam, Haji Lane và các khu phố ngoài trời.</li>
+          <li><strong>Không mua vé OCBC Skyway ngày 02/09:</strong> điểm này đóng bảo trì đúng ngày tham quan.</li>
+        </ul>
+      </aside>
       <p><strong>Nguồn chính thức:</strong> <a href="https://www.jewelchangiairport.com/en/attractions/rain-vortex.html" target="_blank" rel="noopener">Jewel Rain Vortex</a>, <a href="https://www.gardensbythebay.com.sg/en/plan-your-visit/opening-hours.html" target="_blank" rel="noopener">Gardens by the Bay</a>, <a href="https://www.gardensbythebay.com.sg/en/things-to-do/attractions/ocbc-skyway.html" target="_blank" rel="noopener">OCBC Skyway</a>, <a href="https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events/garden-rhapsody.html" target="_blank" rel="noopener">Garden Rhapsody</a>, <a href="https://www.rwsentosa.com/en/play/universal-studios-singapore/attraction-closure" target="_blank" rel="noopener">USS attraction closures</a>, <a href="https://mountfaberleisure.com/attraction/central-beach-bazaar/" target="_blank" rel="noopener">Wings of Time</a>, <a href="https://www.mandai.com/en/night-safari.html" target="_blank" rel="noopener">Night Safari</a>, <a href="https://www.sultanmosque.sg/visitors-info/" target="_blank" rel="noopener">Sultan Mosque</a>.</p>
       <h3>2. Kiểm tra thời gian di chuyển</h3>
       <h4>Ngày 1</h4><ul><li>T3 → Jewel: <strong>5–10 phút</strong>, hợp lý.</li><li>Jewel → City Hall bằng MRT: <strong>55–65 phút</strong>, lịch dành 65 phút, hợp lý.</li><li>Khách sạn/Marina Bay → Event Plaza: <strong>20–25 phút đi bộ</strong>, hợp lý.</li><li>Ăn tối kết thúc 19:20, đến Event Plaza khoảng 19:45, còn 15 phút trước Spectra: <strong>đủ nhưng không nên kéo dài bữa tối</strong>.</li></ul>
