@@ -23,11 +23,12 @@
     .check-in{color:#dc2626;font-weight:800}
     .schedule-note{color:#ea580c;font-weight:800}
     .version{text-align:center;padding:8px 12px 14px;color:#64748b;font-size:11px;font-variant-numeric:tabular-nums}
+    .audit-wrap{max-width:1100px;margin:0 auto 28px;padding:0 12px}.audit-toggle{display:block;margin:0 auto;border:0;border-radius:999px;background:#0f766e;color:#fff;padding:10px 18px;font:inherit;font-size:13px;font-weight:800;cursor:pointer}.audit-toggle:hover{background:#115e59}.audit-toggle[aria-expanded="true"]{background:#475569}.audit-report{margin-top:12px;padding:18px;background:#fff;border:1px solid #cbd5e1;border-radius:14px;box-shadow:0 3px 14px #0f172a10;color:#334155;font-size:13px;line-height:1.55}.audit-report[hidden]{display:none}.audit-report h2{margin:0 0 12px;color:#0f172a;font-size:20px}.audit-report h3{margin:20px 0 8px;color:#0f766e;font-size:16px}.audit-report h4{margin:14px 0 6px;color:#334155;font-size:14px}.audit-report p{margin:7px 0}.audit-report ul,.audit-report ol{list-style:revert;margin:7px 0;padding-left:22px}.audit-report li{margin:5px 0}.audit-table-wrap{overflow-x:auto}.audit-report table{width:100%;border-collapse:collapse;min-width:720px}.audit-report th,.audit-report td{border:1px solid #dbe2ea;padding:8px;text-align:left;vertical-align:top}.audit-report th{background:#f1f5f9;color:#0f172a}.audit-report a{color:#0369a1}.audit-summary{margin-top:16px!important;padding:12px;background:#ecfdf5;border-left:4px solid #10b981;border-radius:7px;color:#065f46;font-weight:700}
     footer{max-width:1100px;margin:0 auto 22px;padding:14px 18px;color:#475569;font-size:12px;line-height:1.55;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px}
     .empty{background:#f8fafc}
     @media (min-width:901px) and (max-width:1500px){.top{padding-top:15px;padding-bottom:15px}.day{border-radius:10px}.day>header{padding:9px 5px}.day>header div{font-size:clamp(11px,1vw,14px)}.day>header small{font-size:clamp(8px,.72vw,10px)}.event{grid-template-columns:clamp(38px,3.7vw,52px) minmax(0,1fr)}time{padding:7px 3px;font-size:clamp(9px,.85vw,12px)}.event div{padding:7px 5px;font-size:clamp(9px,.82vw,12px);line-height:1.3}.toolbar{padding:9px 12px}.legend{font-size:11px}footer{margin-left:10px;margin-right:10px}}
-    @media(max-width:900px){.toolbar{position:static}.toolbar button{display:none}main{display:block;padding:10px;overflow:visible}.day{margin-bottom:14px}.day>header{position:static}.event{grid-template-columns:60px 1fr;height:auto!important}.event.empty{display:none}.event div{font-size:14px}time{font-size:14px}.top{padding-top:18px;padding-bottom:18px}}
-    @media print{body{background:#fff}.toolbar{display:none}.top{padding:12px}main{display:grid;grid-template-columns:repeat(2,1fr);overflow:visible;padding:8px}.day{break-inside:avoid;box-shadow:none}.day>header{position:static}footer{margin:8px}.event{min-height:auto}.event div,time{font-size:9px;padding:5px}}
+    @media(max-width:900px){.toolbar{position:static}.toolbar button{display:none}main{display:block;padding:10px;overflow:visible}.day{margin-bottom:14px}.day>header{position:static}.event{grid-template-columns:60px 1fr;height:auto!important}.event.empty{display:none}.event div{font-size:14px}time{font-size:14px}.top{padding-top:18px;padding-bottom:18px}.audit-wrap{padding:0 10px}.audit-report{padding:14px;font-size:14px}.audit-report h2{font-size:18px}}
+    @media print{body{background:#fff}.toolbar,.audit-toggle{display:none}.top{padding:12px}main{display:grid;grid-template-columns:repeat(2,1fr);overflow:visible;padding:8px}.day{break-inside:avoid;box-shadow:none}.day>header{position:static}footer{margin:8px}.event{min-height:auto}.event div,time{font-size:9px;padding:5px}.audit-report[hidden]{display:block}.audit-report{box-shadow:none}}
   </style>
 </head>
 <body>
@@ -59,7 +60,57 @@
   </article></main>
   <footer><strong>Lưu ý:</strong> Lịch tại Singapore không sử dụng taxi hoặc Grab. Mandai không có ga MRT ngay tại điểm đến nên ngày 3 cần nối chuyến bằng xe buýt công cộng hoặc Mandai Khatib Shuttle. Giờ mở cửa, suất diễn và thời gian di chuyển có thể thay đổi; nên kiểm tra lại gần ngày đi.</footer>
   <nav class="toolbar" aria-label="Công cụ"><button onclick="window.print()">In / Lưu PDF</button><span class="legend"><b>Gạch chân đỏ</b> = cần mua hoặc đặt vé · Xanh lá = ăn trưa · Tím = ăn tối · Đỏ = chuyến bay/ngày nặng</span></nav>
-  <div class="version">Version 260827.14.17.05</div>
+  <div class="version">Version 260827.17.21.52</div>
+  <section class="audit-wrap" aria-label="Báo cáo kiểm tra lịch trình">
+    <button class="audit-toggle" id="auditToggle" type="button" aria-expanded="false" aria-controls="auditReport">Hiện báo cáo kiểm tra thời gian</button>
+    <article class="audit-report" id="auditReport" hidden>
+      <h2>Kiểm tra giờ hoạt động, thời gian di chuyển và tính hợp lý</h2>
+      <p>Mình đã đối chiếu toàn bộ lịch mới từ 1–6/9/2026. Kết luận: lịch nhìn chung chạy được, không có xung đột nghiêm trọng, nhưng có 4 điểm cần lưu ý—đặc biệt là OCBC Skyway đóng cửa ngày 2/9 và thời gian đến Museum of Ice Cream hơi sát.</p>
+      <h3>1. Kiểm tra giờ hoạt động</h3>
+      <div class="audit-table-wrap"><table>
+        <thead><tr><th>Ngày</th><th>Điểm đến</th><th>Giờ hoạt động/giờ diễn</th><th>Lịch hiện tại</th><th>Đánh giá</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Jewel Changi</td><td>Tòa nhà mở 24 giờ; cửa hàng tùy nơi</td><td>13:10–14:45</td><td>✅</td></tr>
+          <tr><td>1</td><td>HSBC Rain Vortex</td><td><strong>10:00–22:00</strong></td><td>14:00–14:45</td><td>✅</td></tr>
+          <tr><td>1</td><td>Shiseido Forest Valley</td><td>Hoạt động trong khung giờ Jewel</td><td>14:00–14:45</td><td>✅</td></tr>
+          <tr><td>1</td><td>Spectra</td><td><strong>20:00 và 21:00</strong>; thêm 22:00 vào T6–T7</td><td>20:00</td><td>✅</td></tr>
+          <tr><td>2</td><td>Museum of Ice Cream</td><td>Theo khung giờ ghi trên vé</td><td>10:00–11:30</td><td>⚠️ Phải xác nhận vé 10:00</td></tr>
+          <tr><td>2</td><td>Cloud Forest</td><td><strong>09:00–21:00</strong>, vào cuối 20:00</td><td>13:30–15:15</td><td>✅</td></tr>
+          <tr><td>2</td><td>Flower Dome</td><td><strong>09:00–21:00</strong>, vào cuối 20:30</td><td>15:15–16:30</td><td>✅</td></tr>
+          <tr><td>2</td><td>OCBC Skyway</td><td>Thông thường 09:00–21:00</td><td>17:00</td><td>❌ <strong>Đóng bảo trì ngày 02/09/2026</strong></td></tr>
+          <tr><td>2</td><td>Garden Rhapsody</td><td><strong>19:45 và 20:45</strong></td><td>19:45</td><td>✅</td></tr>
+          <tr><td>3</td><td>Universal Studios Singapore</td><td>Giờ thay đổi theo ngày, thường mở từ 10:00</td><td>10:00–17:30</td><td>✅ nhưng cần kiểm tra giờ đóng trên vé/app</td></tr>
+          <tr><td>3</td><td>Wings of Time</td><td><strong>19:40 và 20:40</strong>, khoảng 20 phút</td><td>19:40</td><td>✅</td></tr>
+          <tr><td>4</td><td>Merlion Park/Marina Bay</td><td>Khu ngoài trời, không giới hạn giờ</td><td>08:00–10:00</td><td>✅</td></tr>
+          <tr><td>4</td><td>Singapore Zoo</td><td><strong>08:30–18:00</strong>, vào cuối 17:00</td><td>12:30–16:45</td><td>✅</td></tr>
+          <tr><td>4</td><td>Night Safari</td><td><strong>18:00–00:00</strong>, vào cuối 23:15</td><td>19:15–21:30</td><td>✅</td></tr>
+          <tr><td>5</td><td>Kampong Glam/Haji Lane</td><td>Khu phố ngoài trời</td><td>Buổi sáng</td><td>✅</td></tr>
+          <tr><td>5</td><td>Sultan Mosque</td><td>T7: <strong>10:00–12:00 và 14:00–16:00</strong></td><td>10:00–10:30</td><td>✅</td></tr>
+          <tr><td>5</td><td>Sri Veeramakaliamman Temple</td><td>Có nghỉ giữa ngày</td><td>13:10</td><td>⚠️ Chỉ nên xem bên ngoài</td></tr>
+          <tr><td>5</td><td>Buddha Tooth Relic Temple</td><td>Mở ban ngày</td><td>15:00–17:20</td><td>✅</td></tr>
+          <tr><td>5</td><td>JUMBO Riverside Point</td><td>Hoạt động trưa–tối</td><td>18:00–19:45</td><td>✅, nên giữ đặt bàn</td></tr>
+          <tr><td>6</td><td>Changi Airport</td><td>24 giờ</td><td>Buổi sáng</td><td>✅</td></tr>
+        </tbody>
+      </table></div>
+      <p><strong>Nguồn chính thức:</strong> <a href="https://www.jewelchangiairport.com/en/attractions/rain-vortex.html" target="_blank" rel="noopener">Jewel Rain Vortex</a>, <a href="https://www.gardensbythebay.com.sg/en/plan-your-visit/opening-hours.html" target="_blank" rel="noopener">Gardens by the Bay</a>, <a href="https://www.gardensbythebay.com.sg/en/things-to-do/attractions/ocbc-skyway.html" target="_blank" rel="noopener">OCBC Skyway</a>, <a href="https://www.gardensbythebay.com.sg/en/things-to-do/calendar-of-events/garden-rhapsody.html" target="_blank" rel="noopener">Garden Rhapsody</a>, <a href="https://www.rwsentosa.com/en/play/universal-studios-singapore/attraction-closure" target="_blank" rel="noopener">USS attraction closures</a>, <a href="https://mountfaberleisure.com/attraction/central-beach-bazaar/" target="_blank" rel="noopener">Wings of Time</a>, <a href="https://www.mandai.com/en/night-safari.html" target="_blank" rel="noopener">Night Safari</a>, <a href="https://www.sultanmosque.sg/visitors-info/" target="_blank" rel="noopener">Sultan Mosque</a>.</p>
+      <h3>2. Kiểm tra thời gian di chuyển</h3>
+      <h4>Ngày 1</h4><ul><li>T3 → Jewel: <strong>5–10 phút</strong>, hợp lý.</li><li>Jewel → City Hall bằng MRT: <strong>55–65 phút</strong>, lịch dành 65 phút, hợp lý.</li><li>Khách sạn/Marina Bay → Event Plaza: <strong>20–25 phút đi bộ</strong>, hợp lý.</li><li>Ăn tối kết thúc 19:20, đến Event Plaza khoảng 19:45, còn 15 phút trước Spectra: <strong>đủ nhưng không nên kéo dài bữa tối</strong>.</li></ul>
+      <h4>Ngày 2</h4><ul><li>City Hall → Napier → Dempsey/MOIC: <strong>50–65 phút</strong>.</li><li>Lịch rời lúc 08:45 và dự kiến đến 09:55 cho vé 10:00: <strong>quá sát</strong>.</li><li>Dempsey → Gardens by the Bay: <strong>45–60 phút</strong>; lịch có khoảng 75 phút, tốt.</li></ul><p>Khuyến nghị rời khách sạn <strong>08:35</strong>, đến MOIC khoảng 09:40–09:50.</p>
+      <h4>Ngày 3</h4><ul><li>City Hall → HarbourFront: <strong>20–30 phút</strong>, hợp lý.</li><li>VivoCity → USS: <strong>15–20 phút</strong>, hợp lý.</li><li>USS → Beach Station: <strong>20–30 phút</strong>, hợp lý.</li><li>Wings of Time kết thúc khoảng 20:00; về khách sạn 21:10: hợp lý.</li></ul>
+      <h4>Ngày 4</h4><ul><li>City Hall → Khatib → Mandai: <strong>60–75 phút</strong>, lịch dành 75 phút, tốt.</li><li>Singapore Zoo → Night Safari: <strong>10–20 phút đi bộ</strong>, lịch dành 30 phút, tốt.</li><li>Mandai → City Hall: <strong>60–75 phút</strong>, hợp lý.</li></ul>
+      <h4>Ngày 5</h4><p>Các chặng Bugis → Little India → Chinatown → Clarke Quay đều được bố trí <strong>15–25 phút</strong>, phù hợp với MRT và đi bộ.</p>
+      <h4>Ngày 6</h4><ul><li>City Hall → Changi T3: <strong>45–55 phút</strong>, phù hợp.</li><li>Đến sân bay khoảng 08:20–08:30 cho chuyến bay 13:05 là rất sớm nhưng an toàn.</li></ul>
+      <h3>3. Những điểm bất hợp lý hoặc cần điều chỉnh</h3>
+      <ol>
+        <li><strong>Museum of Ice Cream quá sát giờ:</strong> chỉ có khoảng 5 phút từ lúc dự kiến đến nơi tới giờ vé 10:00. Nên xuất phát lúc <strong>08:35</strong>, sớm hơn 10 phút.</li>
+        <li><strong>OCBC Skyway đóng ngày 02/09:</strong> không thể tham quan lúc 17:00. Có thể dùng 30 phút để chụp ảnh tại Supertree Grove, nghỉ và ăn nhẹ, hoặc mua vé Supertree Observatory nếu nơi này vẫn hoạt động và gia đình còn sức.</li>
+        <li><strong>Ngày 3 có ba hạng mục USS đóng:</strong> WaterWorld, TRANSFORMERS The Ride và Pantages Theater. 7 giờ 30 phút ở USS vẫn không quá dài, nhưng có thể rời từ <strong>17:00</strong> nếu trẻ mệt, giúp bữa tối trước Wings of Time thoải mái hơn.</li>
+        <li><strong>Night Safari chỉ đủ cho chương trình chọn lọc:</strong> khoảng 19:15–21:30 đủ cho tram, một số đường đi bộ và có thể xem suất Creatures of the Night lúc 20:30. Nếu muốn đi toàn bộ trail, xem show và tram thì nên ở đến khoảng <strong>22:00</strong>, về khách sạn khoảng 23:15.</li>
+      </ol>
+      <h4>Các lưu ý khác</h4><ul><li>Lịch 13:10 ngày 5 chỉ nên ghi <strong>tham quan bên ngoài Sri Veeramakaliamman Temple</strong>, vì có khả năng đúng giờ nghỉ giữa ngày.</li><li>Check-in lúc 08:30 ngày 6 chỉ thực hiện được <strong>nếu quầy Vietnam Airlines đã mở</strong>. Giữ phương án chờ và làm thủ tục khoảng 10:00–10:15 là hợp lý.</li><li>Phần ghi chú cuối trang vẫn có câu nhắc kết nối Mandai ở “ngày 3”, trong khi Mandai đã chuyển sang <strong>ngày 4</strong>. Đây là lỗi nội dung cần sửa trong lần cập nhật tiếp theo.</li></ul>
+      <p class="audit-summary">Tóm lại: lịch mới khả thi. Chỉ cần xuất phát sớm hơn 10 phút ở ngày 2, giữ OCBC Skyway là điểm đóng cửa, và cân nhắc kéo dài Night Safari thêm khoảng 30 phút nếu muốn tham quan đầy đủ.</p>
+    </article>
+  </section>
   <script>
     function updateEvent(day,row,time,content,type){
       const event=document.querySelector(`.day:nth-of-type(${day}) .event[data-row="${row}"]`);
@@ -125,6 +176,13 @@
       }
     }
     addEventListener('load',alignRows); addEventListener('resize',alignRows);
+    document.getElementById('auditToggle').addEventListener('click',function(){
+      const report=document.getElementById('auditReport');
+      const willOpen=report.hidden;
+      report.hidden=!willOpen;
+      this.setAttribute('aria-expanded',String(willOpen));
+      this.textContent=willOpen?'Ẩn báo cáo kiểm tra thời gian':'Hiện báo cáo kiểm tra thời gian';
+    });
   </script>
 </body>
 </html>
