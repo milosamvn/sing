@@ -23,13 +23,18 @@
     .check-in{color:#dc2626;font-weight:800}
     .schedule-note{color:#ea580c;font-weight:800}
     .purchase-status{display:inline-block;color:#dc2626;font-weight:800;line-height:1.2;vertical-align:baseline;white-space:nowrap}
-    .locked{border:2px solid #dc2626!important;border-radius:8px;margin:2px 0;background:#fff7ed}.locked time{color:#b91c1c;flex-direction:column;gap:3px}.time-lock{display:block;font-size:14px;line-height:1}.vip,.purchased{display:inline-block;padding:1px 4px;border-radius:4px;color:#fff;font-size:9px;font-weight:800;line-height:1.2;vertical-align:baseline;white-space:nowrap}.vip{background:#dc2626}.purchased{background:#16a34a}
+    .locked{border:2px solid #dc2626!important;border-radius:8px;margin:2px 0;background:#fff7ed}.locked time{color:#b91c1c;flex-direction:column;gap:3px}.time-lock{display:block;font-size:14px;line-height:1}.vip,.purchased,.reserved{display:inline-block;padding:1px 4px;border-radius:4px;color:#fff;font-size:9px;font-weight:800;line-height:1.2;vertical-align:baseline;white-space:nowrap}.vip{background:#dc2626}.purchased{background:#16a34a}.reserved{background:#eab308;color:#422006}
     .event div.purchase-cell{position:relative;padding-bottom:18px!important}.purchase-row{position:absolute;left:9px;bottom:3px;display:block;line-height:1}
-    time:not(:empty){cursor:context-menu;user-select:none}
+    .event:not(.empty){cursor:context-menu}
+    time:not(:empty){user-select:none}
     .time-context-menu{position:fixed;z-index:10000;min-width:170px;padding:5px;background:#fff;border:1px solid #cbd5e1;border-radius:9px;box-shadow:0 10px 30px #0f172a30}
     .time-context-menu[hidden]{display:none}
     .time-context-menu button{width:100%;border:0;border-radius:6px;background:#fff;color:#0f172a;padding:9px 11px;text-align:left;font:inherit;font-size:13px;font-weight:800;cursor:pointer}
     .time-context-menu button:hover,.time-context-menu button:focus{background:#f1f5f9;outline:none}
+    .time-context-menu .menu-separator{height:1px;margin:5px 3px;background:#e2e8f0}
+    .time-context-menu button[data-ticket-status="vip"]{color:#b91c1c}
+    .time-context-menu button[data-ticket-status="purchased"]{color:#15803d}
+    .time-context-menu button[data-ticket-status="reserved"]{color:#a16207}
     .version{text-align:center;padding:8px 12px 14px;color:#64748b;font-size:11px;font-variant-numeric:tabular-nums}
     .audit-wrap{max-width:1100px;margin:0 auto 28px;padding:0 12px}.audit-toggle{display:block;margin:0 auto;border:0;border-radius:999px;background:#0f766e;color:#fff;padding:10px 18px;font:inherit;font-size:13px;font-weight:800;cursor:pointer}.audit-toggle:hover{background:#115e59}.audit-toggle[aria-expanded="true"]{background:#475569}.audit-report{margin-top:12px;padding:18px;background:#fff;border:1px solid #cbd5e1;border-radius:14px;box-shadow:0 3px 14px #0f172a10;color:#334155;font-size:13px;line-height:1.55}.audit-report[hidden]{display:none}.audit-report h2{margin:0 0 12px;color:#0f172a;font-size:20px}.audit-report h3{margin:20px 0 8px;color:#0f766e;font-size:16px}.audit-report h4{margin:14px 0 6px;color:#334155;font-size:14px}.audit-report p{margin:7px 0}.audit-report ul,.audit-report ol{list-style:revert;margin:7px 0;padding-left:22px}.audit-report li{margin:5px 0}.audit-table-wrap{overflow-x:auto}.audit-report table{width:100%;border-collapse:collapse;min-width:720px}.audit-report th,.audit-report td{border:1px solid #dbe2ea;padding:8px;text-align:left;vertical-align:top}.audit-report th{background:#f1f5f9;color:#0f172a}.audit-report a{color:#0369a1}.booking-note{margin:14px 0;padding:12px 14px;background:#fff7ed;border:1px solid #fdba74;border-radius:10px}.booking-note h4{margin:0 0 8px;color:#c2410c}.booking-note strong{color:#9a3412}.audit-summary{margin-top:16px!important;padding:12px;background:#ecfdf5;border-left:4px solid #10b981;border-radius:7px;color:#065f46;font-weight:700}
     footer{max-width:1100px;margin:0 auto 22px;padding:14px 18px;color:#475569;font-size:12px;line-height:1.55;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px}
@@ -70,6 +75,11 @@
   <nav class="toolbar" aria-label="Công cụ"><button onclick="window.print()">In / Lưu PDF</button><span class="legend"><b>Gạch chân đỏ</b> = cần mua hoặc đặt vé · Xanh lá = ăn trưa · Tím = ăn tối · Đỏ = chuyến bay/ngày nặng</span></nav>
   <div class="time-context-menu" id="timeContextMenu" role="menu" hidden>
     <button id="timeContextAction" type="button" role="menuitem">🔒 Khóa giờ</button>
+    <div class="menu-separator" role="separator"></div>
+    <button type="button" role="menuitem" data-ticket-status="vip" data-label="🔴 Đã mua VIP">🔴 Đã mua VIP</button>
+    <button type="button" role="menuitem" data-ticket-status="purchased" data-label="🟢 Đã mua">🟢 Đã mua</button>
+    <button type="button" role="menuitem" data-ticket-status="reserved" data-label="🟡 Đã đặt chỗ">🟡 Đã đặt chỗ</button>
+    <button type="button" role="menuitem" data-ticket-status="" data-label="✕ Xóa trạng thái vé">✕ Xóa trạng thái vé</button>
   </div>
   <div class="version">Version 260828.01.06.00</div>
   <section class="audit-wrap" aria-label="Báo cáo kiểm tra lịch trình">
@@ -197,6 +207,12 @@
     document.querySelector('.day:last-of-type .event[data-row="5"] div').innerHTML='<span class="check-in">CHECK IN</span> / Gửi hành lý / làm thủ tục sớm nếu quầy đã mở (~45\')';
     const timeContextMenu=document.getElementById('timeContextMenu');
     const timeContextAction=document.getElementById('timeContextAction');
+    const ticketStatusActions=[...timeContextMenu.querySelectorAll('[data-ticket-status]')];
+    const ticketStatuses={
+      vip:{label:'Đã mua VIP',className:'vip'},
+      purchased:{label:'Đã mua',className:'purchased'},
+      reserved:{label:'Đã đặt chỗ',className:'reserved'}
+    };
     let selectedTimeEvent=null;
     function setEventLock(event,locked){
       const time=event.querySelector('time');
@@ -214,32 +230,68 @@
         time.append(icon);
       }
     }
-    function lockStorageKey(event){
+    function eventStorageId(event){
       const day=event.closest('.day')?.querySelector('header div')?.textContent.trim()||'unknown-day';
-      return `sing-lock:${day}:${event.dataset.row}`;
+      return `${day}:${event.dataset.row}`;
+    }
+    function lockStorageKey(event){return `sing-lock:${eventStorageId(event)}`}
+    function ticketStorageKey(event){return `sing-ticket:${eventStorageId(event)}`}
+    function currentTicketStatus(event){
+      const badge=event.querySelector('.purchase-row .vip, .purchase-row .purchased, .purchase-row .reserved');
+      if(!badge)return '';
+      return Object.keys(ticketStatuses).find(status=>badge.classList.contains(ticketStatuses[status].className))||'';
+    }
+    function setTicketStatus(event,status){
+      const details=event.querySelector(':scope > div');
+      if(!details)return;
+      details.querySelector('.purchase-row')?.remove();
+      const config=ticketStatuses[status];
+      if(config){
+        const row=document.createElement('span');
+        row.className='purchase-row';
+        const badge=document.createElement('span');
+        badge.className=config.className;
+        badge.textContent=config.label;
+        row.append(badge);
+        details.append(row);
+      }
+      details.classList.toggle('purchase-cell',!!config);
+    }
+    function updateTimeContextMenu(event){
+      timeContextAction.textContent=event.classList.contains('locked')?'🔓 Bỏ khóa giờ':'🔒 Khóa giờ';
+      const current=currentTicketStatus(event);
+      ticketStatusActions.forEach(action=>{
+        const selected=action.dataset.ticketStatus===current&&current!=='';
+        action.textContent=(selected?'✓ ':'')+action.dataset.label;
+      });
+    }
+    function openTimeContextMenu(event,contextEvent){
+      selectedTimeEvent=event;
+      updateTimeContextMenu(event);
+      timeContextMenu.hidden=false;
+      const rect=timeContextMenu.getBoundingClientRect();
+      timeContextMenu.style.left=Math.max(8,Math.min(contextEvent.clientX,innerWidth-rect.width-8))+'px';
+      timeContextMenu.style.top=Math.max(8,Math.min(contextEvent.clientY,innerHeight-rect.height-8))+'px';
+      timeContextAction.focus();
     }
     function closeTimeContextMenu(){
       timeContextMenu.hidden=true;
       selectedTimeEvent=null;
     }
-    document.querySelectorAll('.event time').forEach(time=>{
-      const event=time.closest('.event');
-      if(!event||!time.textContent.trim())return;
-      time.title='Nhấp chuột phải để khóa hoặc bỏ khóa giờ';
+    document.querySelectorAll('.event:not(.empty)').forEach(event=>{
+      const time=event.querySelector('time');
+      if(!time||!time.textContent.trim())return;
+      time.title='Nhấp chuột phải để tùy chỉnh khung lịch trình';
       try{
-        const saved=localStorage.getItem(lockStorageKey(event));
-        if(saved!==null)setEventLock(event,saved==='1');
+        const savedLock=localStorage.getItem(lockStorageKey(event));
+        if(savedLock!==null)setEventLock(event,savedLock==='1');
+        const savedTicket=localStorage.getItem(ticketStorageKey(event));
+        if(savedTicket!==null)setTicketStatus(event,savedTicket);
       }catch(error){}
-      time.addEventListener('contextmenu',contextEvent=>{
+      event.addEventListener('contextmenu',contextEvent=>{
         contextEvent.preventDefault();
         contextEvent.stopPropagation();
-        selectedTimeEvent=event;
-        timeContextAction.textContent=event.classList.contains('locked')?'🔓 Bỏ khóa giờ':'🔒 Khóa giờ';
-        timeContextMenu.hidden=false;
-        const rect=timeContextMenu.getBoundingClientRect();
-        timeContextMenu.style.left=Math.max(8,Math.min(contextEvent.clientX,innerWidth-rect.width-8))+'px';
-        timeContextMenu.style.top=Math.max(8,Math.min(contextEvent.clientY,innerHeight-rect.height-8))+'px';
-        timeContextAction.focus();
+        openTimeContextMenu(event,contextEvent);
       });
     });
     timeContextAction.addEventListener('click',()=>{
@@ -251,6 +303,15 @@
       closeTimeContextMenu();
       alignRows();
     });
+    ticketStatusActions.forEach(action=>action.addEventListener('click',()=>{
+      if(!selectedTimeEvent)return;
+      const event=selectedTimeEvent;
+      const status=action.dataset.ticketStatus;
+      setTicketStatus(event,status);
+      try{localStorage.setItem(ticketStorageKey(event),status)}catch(error){}
+      closeTimeContextMenu();
+      alignRows();
+    }));
     document.addEventListener('click',clickEvent=>{if(!timeContextMenu.contains(clickEvent.target))closeTimeContextMenu()});
     document.addEventListener('keydown',keyEvent=>{if(keyEvent.key==='Escape')closeTimeContextMenu()});
     addEventListener('scroll',closeTimeContextMenu,{passive:true});
