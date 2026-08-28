@@ -61,7 +61,7 @@
   </article></main>
   <footer><strong>Lưu ý:</strong> Lịch tại Singapore không sử dụng taxi hoặc Grab. Mandai không có ga MRT ngay tại điểm đến nên ngày 4 cần nối chuyến bằng xe buýt công cộng hoặc Mandai Khatib Shuttle. Giờ mở cửa, suất diễn và thời gian di chuyển có thể thay đổi; nên kiểm tra lại gần ngày đi.</footer>
   <nav class="toolbar" aria-label="Công cụ"><button onclick="window.print()">In / Lưu PDF</button><span class="legend"><b>Gạch chân đỏ</b> = cần mua hoặc đặt vé · Xanh lá = ăn trưa · Tím = ăn tối · Đỏ = chuyến bay/ngày nặng</span></nav>
-  <div class="version">Version 260828.01.02.00</div>
+  <div class="version">Version 260828.01.03.00</div>
   <section class="audit-wrap" aria-label="Báo cáo kiểm tra lịch trình">
     <button class="audit-toggle" id="auditToggle" type="button" aria-expanded="false" aria-controls="auditReport">Hiện chi tiết</button>
     <article class="audit-report" id="auditReport" hidden>
@@ -144,6 +144,7 @@
     }
     updateEvent(3,0,'','<span class="schedule-note">Có thể căn chỉnh lịch làm việc buổi sáng cho phù hợp.</span>','activity');
     updateEvent(2,5,'10:30','<span class="ticket">Universal Studios Singapore</span> • khu vui chơi (~7h30\', gồm giờ ăn trưa) <span class="vip">Đã mua VIP</span>','highlight',true);
+    updateEvent(4,5,'10:00','<span class="ticket">Museum of Ice Cream Singapore</span> (60–90\') <span class="vip">Đã mua VIP</span>','highlight');
     clearEvent(1,6);
     updateEvent(1,7,'13:10','Ăn trưa tại Jewel (~50\')','lunch');
     updateEvent(1,8,'14:00','Jewel Changi • HSBC Rain Vortex hoạt động 10:00–22:00 • Forest Valley • chụp ảnh (~45\')','highlight');
