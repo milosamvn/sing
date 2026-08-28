@@ -15,7 +15,7 @@
     main{width:100%;max-width:1800px;margin:auto;padding:clamp(8px,1vw,14px);display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(6px,.8vw,12px);overflow-x:hidden;align-items:start}
     .day{background:#fff;border:1px solid #dbe2ea;border-radius:14px;box-shadow:0 3px 14px #0f172a10;overflow:hidden;min-width:0}
     .day>header{background:var(--day);color:#fff;text-align:center;padding:12px 8px}.day>header div{font-weight:800;font-size:15px}.day>header small{display:block;margin-top:4px;font-size:11px;font-weight:700;opacity:.92}
-    ol{list-style:none;margin:0;padding:0}.event{display:grid;grid-template-columns:54px 1fr;border-bottom:1px solid #e2e8f0;background:#fff}.event:last-child{border-bottom:0}
+    ol{list-style:none;margin:0;padding:0}.event{position:relative;display:grid;grid-template-columns:54px 1fr;border-bottom:1px solid #e2e8f0;background:#fff}.event:last-child{border-bottom:0}
     time{display:flex;align-items:center;justify-content:center;padding:11px 6px;text-align:center;font-size:13px;font-weight:800;border-right:1px solid #dbe2ea;font-variant-numeric:tabular-nums}.event div{min-width:0;padding:10px 9px;font-size:13px;line-height:1.38;overflow-wrap:anywhere}
     .breakfast{background:#fff7ed;color:#9a3412;font-weight:700}.lunch{background:#d1fae5;color:#065f46;font-weight:700}.dinner{background:#ede9fe;color:#5b21b6;font-weight:700}
     .flight{background:#fee2e2;color:#991b1b;font-weight:800}.travel{background:#e0f2fe;color:#075985;font-style:italic}.highlight{background:#fef3c7;color:#92400e;font-weight:700}.rest{background:#f1f5f9;color:#475569}.heavy{background:#fecaca;color:#991b1b;font-weight:800}
@@ -282,7 +282,8 @@
     function setTicketStatus(event,status){
       const details=event.querySelector(':scope > div');
       if(!details)return;
-      details.querySelector('.purchase-row')?.remove();
+      event.querySelector(':scope > .purchase-row')?.remove();
+      details.querySelector(':scope > .purchase-row')?.remove();
       const config=ticketStatuses[status];
       if(config){
         const row=document.createElement('span');
@@ -291,7 +292,7 @@
         badge.className=config.className;
         badge.textContent=config.label;
         row.append(badge);
-        details.append(row);
+        event.append(row);
       }
       details.classList.toggle('purchase-cell',!!config);
     }
@@ -317,6 +318,9 @@
       selectedTimeEvent=null;
     }
     document.querySelectorAll('.event:not(.empty)').forEach(event=>{
+      const details=event.querySelector(':scope > div');
+      const inlinePurchaseRow=details?.querySelector(':scope > .purchase-row');
+      if(inlinePurchaseRow)event.append(inlinePurchaseRow);
       const time=event.querySelector('time');
       if(!time||!time.textContent.trim())return;
       time.title='Nhấp chuột phải để tùy chỉnh khung lịch trình';
